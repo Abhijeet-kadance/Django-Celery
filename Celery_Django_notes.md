@@ -79,7 +79,7 @@ When you start a celery worker, you specify the pool, concurrency, autoscale etc
 
   - pool : decides who will actually perform the task - thread, child process, worker itself or else.
 
-  - concurrency: concurrency will decide the size of the pool. By default pool size == number_of_CPU_cores_of_the_system.
+  - concurrency: concurrency will decide the size of the pool. By default pool size == number_of_CPU_cores_of_the_system. , 
 
   - autoscale: to dynamically resize the pool based on load. The autoscaler adds more pool processes when there is work to do, and starts removing processes when the workload is low.
 
