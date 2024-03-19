@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'mainapp',
     'send_mail_app',
     'django_celery_results',
+    'django_celery_beat',
+    
 ]
 
 MIDDLEWARE = [
@@ -131,10 +133,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CELERY BEAT SETTINGS
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 # CELERY SETTINGS
-
-#CELERY_broker_url = 'redis://127.0.0.1:6379'
 CELERY_BROKER_URL= 'redis://127.0.0.1:6379'
 accept_content = ['application/json']
 result_serializer = 'json'
@@ -143,16 +145,12 @@ timezone = 'Asia/Kolkata'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 
-#SMTP Settings
-
-from_email = env('EMAIL_HOST_USER')
-
+# SMTP Settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_USE_TLS = True
+# EMAIL_USE_TLS = True
 EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = env('EMAIL_PORT')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_MAIL = f'CELERY APP TESTING <{from_email}>'
+DEFAULT_FROM_MAIL = "Celery <abhijeett@cdac.in>"
 
-#env('DEBUG')
